@@ -1,1 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тексти і юзери</title>
+    <style>
+      .report {
+        margin-top: 20px;
+      }
+      .report h2 {
+        margin-bottom: 10px;
+      }
+      .report table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .report th,
+      .report td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Тексти і юзери</h1>
 
+    <h2>Створити або модифікувати клан</h2>
+    <form id="clanForm">
+      <label for="clanId">ID (залишайте порожнім для створення):</label>
+      <input type="number" id="clanId" name="clanId" /><br /><br />
+
+      <label for="clanName">Ім'я:</label>
+      <input type="text" id="clanName" name="clanName" required /><br /><br />
+
+      <label for="clanCreationDate">Дата створення:</label>
+      <input
+        type="datetime-local"
+        id="clanCreationDate"
+        name="clanCreationDate"
+        required
+      /><br /><br />
+
+      <button type="submit">Надіслати</button>
+    </form>
+
+    <h2>Створити чи модифікувати юзера</h2>
+    <form id="userForm">
+      <label for="userId">ID (залишайте порожнім для нового):</label>
+      <input type="number" id="userId" name="userId" /><br /><br />
+
+      <label for="userNickname">Нікнейм:</label>
+      <input
+        type="text"
+        id="userNickname"
+        name="userNickname"
+        required
+      /><br /><br />
+
+      <label for="userCreationDate">Дата створення:</label>
+      <input
+        type="datetime-local"
+        id="userCreationDate"
+        name="userCreationDate"
+        required
+      /><br /><br />
+
+      <label for="userClanId">Clan ID:</label>
+      <input type="number" id="userClanId" name="userClanId" /><br /><br />
+
+      <button type="submit">Надіслати</button>
+    </form>
+
+    <h2>Створити чи модифікувати словник</h2>
+    <form id="dictionaryForm">
+      <label for="dictionaryId">ID (залишайте порожнім для нового):</label>
+      <input type="number" id="dictionaryId" name="dictionaryId" /><br /><br />
+
+      <label for="dictionaryName">Name:</label>
+      <input
+        type="text"
+        id="dictionaryName"
+        name="dictionaryName"
+        required
+      /><br /><br />
+
+      <label for="dictionaryCreationDate">Дата створення:</label>
+      <input
+        type="datetime-local"
+        id="dictionaryCreationDate"
+        name="dictionaryCreationDate"
+        required
+      /><br /><br />
+
+      <button type="submit">Надіслати</button>
+    </form>
+
+    <h2>Створити чи модифікувати Текст</h2>
+    <form id="textForm">
+      <label for="textId">ID (залишайте порожнім для нового):</label>
+      <input type="number" id="textId" name="textId" /><br /><br />
+
+      <label for="textTitle">Заголовок:</label>
+      <input type="text" id="textTitle" name="textTitle" required /><br /><br />
+
+      <label for="textContent">Текст:</label>
+      <textarea id="textContent" name="textContent" required></textarea
+      ><br /><br />
+
+      <label for="textCreationDate">Дата створення:</label>
+      <input
+        type="datetime-local"
+        id="textCreationDate"
+        name="textCreationDate"
+        required
+      /><br /><br />
+
+      <label for="textDictionaryId">Словник ID:</label>
+      <input
+        type="number"
+        id="textDictionaryId"
+        name="textDictionaryId"
+        required
+      /><br /><br />
+
+      <button type="submit">Надіслати</button>
+    </form>
+
+    <h2>Створити чи модифікувати Результат</h2>
+    <form id="resultForm">
+      <label for="resultId">ID (залишайте порожнім для нового):</label>
+      <input type="number" id="resultId" name="resultId" /><br /><br />
+
+      <label for="resultUserId">Юзер ID:</label>
+      <input
+        type="number"
+        id="resultUserId"
+        name="resultUserId"
+        required
+      /><br /><br />
+
+      <label for="resultTextId">Текст ID:</label>
+      <input
+        type="number"
+        id="resultTextId"
+        name="resultTextId"
+        required
+      /><br /><br />
+
+      <label for="resultTime">Час:</label>
+      <input
+        type="number"
+        id="resultTime"
+        name="resultTime"
+        required
+      /><br /><br />
+
+      <label for="resultCreationDate">Дата створення:</label>
+      <input
+        type="datetime-local"
+        id="resultCreationDate"
+        name="resultCreationDate"
+        required
+      /><br /><br />
+
+      <button type="submit">Надіслати</button>
+    </form>
+
+    <!-- Sections to display data -->
+    <div id="clanList" class="report">
+      <h2>Клани</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Назва</th>
+            <th>Дата створення</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="userList" class="report">
+      <h2>Користувачі</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Нікнейм</th>
+            <th>Дата створення</th>
+            <th>ID клану</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="dictionaryList" class="report">
+      <h2>Словник</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Назва словника</th>
+            <th>Дата створення</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="textList" class="report">
+      <h2>Тексти</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Заголовок тексту</th>
+            <th>Текст</th>
+            <th>Дата створення</th>
+            <th>ID словника</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="resultList" class="report">
+      <h2>Результати</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Користувач ID</th>
+            <th>Текст ID</th>
+            <th>Пройдений час</th>
+            <th>Дата створення</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="report1" class="report">
+      <h2>Звіт 1: Користувачі з їх кланами та результатами</h2>
+      <button onclick="fetchReport('/report1', 'report1Table')">
+        Завантажити звіт 1
+      </button>
+      <table id="report1Table">
+        <thead>
+          <tr>
+            <th>ID юзера</th>
+            <th>Нікнейм юзера</th>
+            <th>Дата реєстраії юзера</th>
+            <th>Назва клану</th>
+            <th>Дата створення клану</th>
+            <th>ID тексту</th>
+            <th>Заголовок тексту</th>
+            <th>Назва словника</th>
+            <th>Дата створення словника</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="report2" class="report">
+      <h2>Звіт 2: Тексти з їх словниками та результатами користувачів</h2>
+      <button onclick="fetchReport('/report2', 'report2Table')">
+        Завантажити Звіт 2
+      </button>
+      <table id="report2Table">
+        <thead>
+          <tr>
+            <th>ID тексту</th>
+            <th>Заголовок тексту</th>
+            <th>Назва словника</th>
+            <th>Дата створення словника</th>
+            <th>Юзер ID</th>
+            <th>Юзер нікнейм</th>
+            <th>Юзер дата реєстрації</th>
+            <th>Час</th>
+            <th>Дата створення результату</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- New section for Report 3 -->
+    <div id="report3" class="report">
+      <h2>Звіт 3: Топ-10 текстів за словником</h2>
+      <select id="dictionarySelect"></select>
+      <button onclick="fetchReport3()">Завантажити звіт 3</button>
+      <table id="report3Table">
+        <thead>
+          <tr>
+            <th>ID тексту</th>
+            <th>Заголовок тексту</th>
+            <th>Текст</th>
+            <th>Дата створення тексту</th>
+            <th>Назва словника</th>
+            <th>Дата створення словника</th>
+            <th>Кількість результатів</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script>
+      async function fetchData(endpoint, listId) {
+        const response = await fetch(endpoint, {
+          headers: {
+            "Cache-Control": "no-cache",
+          },
+        });
+        const data = await response.json();
+        const list = document.getElementById(listId).querySelector("tbody");
+        list.innerHTML = "";
+        data.forEach((item) => {
+          const row = document.createElement("tr");
+          for (const key in item) {
+            const cell = document.createElement("td");
+            cell.textContent = item[key];
+            row.appendChild(cell);
+          }
+          list.appendChild(row);
+        });
+      }
+
+      async function handleSubmit(event, endpoint, listId) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+        await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        fetchData(endpoint, listId);
+      }
+
+      async function fetchReport(endpoint, tableId) {
+        const response = await fetch(endpoint, {
+          headers: {
+            "Cache-Control": "no-cache",
+          },
+        });
+        const data = await response.json();
+        const tableBody = document
+          .getElementById(tableId)
+          .querySelector("tbody");
+        tableBody.innerHTML = "";
+        data.forEach((item) => {
+          const row = document.createElement("tr");
+          for (const key in item) {
+            const cell = document.createElement("td");
+            cell.textContent = item[key];
+            row.appendChild(cell);
+          }
+          tableBody.appendChild(row);
+        });
+      }
+
+      async function fetchReport3() {
+        const dictionaryId = document.getElementById("dictionarySelect").value;
+        const endpoint = `/report3?dictionaryId=${dictionaryId}`;
+        fetchReport(endpoint, "report3Table");
+      }
+
+      async function fetchDictionaries() {
+        const response = await fetch("/dictionary");
+        const dictionaries = await response.json();
+        const dictionarySelect = document.getElementById("dictionarySelect");
+        dictionaries.forEach((dictionary) => {
+          const option = document.createElement("option");
+          option.value = dictionary.id;
+          option.textContent = dictionary.name;
+          dictionarySelect.appendChild(option);
+        });
+      }
+
+      document
+        .getElementById("clanForm")
+        .addEventListener("submit", function (event) {
+          handleSubmit(event, "/clans", "clanList");
+        });
+
+      document
+        .getElementById("userForm")
+        .addEventListener("submit", function (event) {
+          handleSubmit(event, "/users", "userList");
+        });
+
+      document
+        .getElementById("dictionaryForm")
+        .addEventListener("submit", function (event) {
+          handleSubmit(event, "/dictionary", "dictionaryList");
+        });
+
+      document
+        .getElementById("textForm")
+        .addEventListener("submit", function (event) {
+          handleSubmit(event, "/text", "textList");
+        });
+
+      document
+        .getElementById("resultForm")
+        .addEventListener("submit", function (event) {
+          handleSubmit(event, "/results", "resultList");
+        });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchDictionaries();
+      });
+      // Initial data fetch
+      fetchData("/clans", "clanList");
+      fetchData("/users", "userList");
+      fetchData("/dictionary", "dictionaryList");
+      fetchData("/text", "textList");
+      fetchData("/results", "resultList");
+
+      fetchReport("/report1", "report1Table");
+      fetchReport("/report2", "report2Table");
+    </script>
+  </body>
+</html>
